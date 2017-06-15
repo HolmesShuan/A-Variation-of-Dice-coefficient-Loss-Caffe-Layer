@@ -20,7 +20,10 @@ void DiceCoefLossLayer<Dtype>::Reshape(
   result_tmp_.Reshape(result_shape);
   multiplier_.Reshape(multiplier_shape);
   tmp_.ReshapeLike(*bottom[0]);
+  smooth = Dtype(1.);
   caffe_set(dim, Dtype(1), multiplier_.mutable_cpu_data());
+  caffe_set(batchsize, smooth, result_tmp_.mutable_cpu_data());
+  caffe_set(batchsize, smooth, result_.mutable_cpu_data());
 }
 
 template <typename Dtype>
