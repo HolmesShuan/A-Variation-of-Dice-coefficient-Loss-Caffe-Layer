@@ -32,7 +32,7 @@ void DiceCoefLossLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   caffe_mul(bottom[0]->count(), bottom[0]->cpu_data(), bottom[0]->cpu_data(), 
                 tmp_.mutable_cpu_data());
   caffe_cpu_gemv(CblasNoTrans, bottom[0]->num(), bottom[0]->count(1), Dtype(1.), tmp_.cpu_data(), 
-                    multiplier_.cpu_data(), Dtype(0.), result_tmp_.mutable_cpu_data());
+                    multiplier_.cpu_data(), Dtype(1.), result_tmp_.mutable_cpu_data());
   caffe_mul(bottom[1]->count(), bottom[1]->cpu_data(), bottom[1]->cpu_data(), 
                 tmp_.mutable_cpu_data());
   caffe_cpu_gemv(CblasNoTrans, bottom[1]->num(), bottom[1]->count(1), Dtype(1.), tmp_.cpu_data(), 
@@ -40,7 +40,7 @@ void DiceCoefLossLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   caffe_mul(bottom[0]->count(), bottom[0]->cpu_data(), bottom[1]->cpu_data(), 
                 tmp_.mutable_cpu_data());
   caffe_cpu_gemv(CblasNoTrans, bottom[1]->num(), bottom[1]->count(1), Dtype(2.), tmp_.cpu_data(), 
-                    multiplier_.cpu_data(), Dtype(0.), result_.mutable_cpu_data());
+                    multiplier_.cpu_data(), Dtype(1.), result_.mutable_cpu_data());
   caffe_div(bottom[0]->num(), result_.cpu_data(), result_tmp_.cpu_data(), result_.mutable_cpu_data());
   
   Dtype loss = Dtype(1) - caffe_cpu_asum(bottom[0]->num(), result_.cpu_data()) / bottom[0]->num();
