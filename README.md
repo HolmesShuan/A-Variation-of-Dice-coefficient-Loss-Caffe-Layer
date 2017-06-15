@@ -1,7 +1,7 @@
 # Dice-coefficient-Loss-Caffe-Layer
 Computes the dice coefficient loss for real-value regression task.<br>
-*`(2xy)/(sum(x.^2)+sum(y.^2))`*<br>
-`x,y` are both vectors.<br>
+*`(2xy+s)/(sum(x.^2)+sum(y.^2)+s)`*<br>
+`x,y` are both vectors.`s` means smooth term(default 1).<br>
 
 ## How to use?
 ```
