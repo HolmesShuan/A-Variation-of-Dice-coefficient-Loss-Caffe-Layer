@@ -16,4 +16,4 @@ layer {
   top: "loss"
 }
 ```
-The same as `EuclideanLoss` layer. Only the two bottom blobs's setting is supported.
+The same as `EuclideanLoss` layer. Only the two bottom blobs setting is supported.
