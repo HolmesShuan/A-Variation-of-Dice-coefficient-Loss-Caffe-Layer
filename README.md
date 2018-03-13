@@ -1,11 +1,11 @@
-# Dice-coefficient-Loss-Caffe-Layer
-Computes the dice coefficient loss for real-value regression task.<br>
-*`(2xy+s)/(sum(x.^2)+sum(y.^2)+s)`*<br>
-`x,y` are both vectors(***float32***). `s` means smooth term(default 1).<br>
-
-**Please notice:**<br>
-When `x,y` is not 0 or 1, `(2xy+s)/(sum(x.^2)+sum(y.^2)+s)` is not equal to `(2xy+s)/(sum(x)+sum(y)+s)`.
-
+# Variational Dice Coefficient Loss Layer
+Interest in `Unet` or `Segmentation` may jump to `Related works`.    
+## Target:
+Compute the variational dice coefficient loss for **`real-value`** regression task, such as super resolution. Mathematically,   
+```
+Loss = (2x^Ty+e)/(x^Tx+y^Ty+e)
+```
+where `x,y` are both vectors in ***float32***. `e` referes to smooth term (default 1).   
 ## How to use?
 ```
 layer {
@@ -16,4 +16,13 @@ layer {
   top: "loss"
 }
 ```
-The same as `EuclideanLoss` layer. Only the two bottom blobs setting is supported.
+The same as `EuclideanLoss` layer, restricted to `bottom_size==2`.
+## Related works:
+**Unet Dice Loss** for segmentation:
+```
+Dice(A,B) = 2|AB|/(|A|+|B|)
+```
+**Other Source**:   
+1. [Caffe Implementation I](https://github.com/yihui-he/caffe-dice-loss-layer).
+2. [Caffe Implementation II](https://github.com/im-rishabh/Caffe-Dice-Loss-Layer).
+3. [TensorFlow Unet with Dice Loss](https://github.com/jakeret/tf_unet).
