@@ -2,7 +2,7 @@
 Interest in `Unet` or `Segmentation` may jump to `Related works`.    
 ## Target:
 Compute the variation of dice coefficient loss for **`real-value`** regression task, such as super resolution. Mathematically,   
-```
+```matlab
 Loss = (2x^Ty+e)/(x^Tx+y^Ty+e)
 ```
 where `x,y` are both vectors in ***float32***. `e` referes to smooth term (default 1).   
