@@ -1,5 +1,5 @@
 # A Variation of Dice Coefficient Loss Layer
-Interest in `Unet` or `Segmentation` may jump to `Related works`.    
+If you are interested in `Unet` or `Segmentation`, please jump to the `Related works`.    
 ## Target:
 Compute the variation of dice coefficient loss for **`real-value`** regression task, such as super resolution. Mathematically,   
 ```matlab
