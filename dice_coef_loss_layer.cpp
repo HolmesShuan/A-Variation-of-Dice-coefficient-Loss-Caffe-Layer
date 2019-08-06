@@ -52,7 +52,7 @@ void DiceCoefLossLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
     const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom) {
   for (int i = 0; i < 2; ++i) {
     if (propagate_down[i]) {
-      const Dtype sign = Dtype(1.0);
+      const Dtype sign = Dtype(1.0)/bottom[0]->num();
       const int index = (i == 0) ? 1 : 0;
       caffe_copy(bottom[i]->count(), bottom[i]->cpu_data(), bottom[i]->mutable_cpu_diff());
       for (int j = 0; j < bottom[i]->num(); j++) {
