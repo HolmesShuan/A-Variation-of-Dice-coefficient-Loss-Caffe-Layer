@@ -50,7 +50,7 @@ void DiceCoefLossLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
   for (int i = 0; i < 2; ++i) {
     if (propagate_down[i]) {
       int count = bottom[i]->count();
-      const Dtype sign = Dtype(1.0)*top[0]->cpu_diff()[0];
+      const Dtype sign = Dtype(1.0)*top[0]->cpu_diff()[0]/bottom[0]->num();
       const int index = (i == 0) ? 1 : 0;
       DiceCoefLossBackward<Dtype><<<CAFFE_GET_BLOCKS(count), CAFFE_CUDA_NUM_THREADS>>>(
         count, bottom[index]->gpu_data(), bottom[i]->gpu_data(), bottom[i]->mutable_gpu_diff(), 
